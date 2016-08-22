@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# This file is part of LINUX-TOOLS.
+#
+# LINUX-TOOLS is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# LINUX-TOOLS is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with LINUX-TOOLS.  If not, see <http://www.gnu.org/licenses/gpl.txt>.
+#
+# If you need to develop a closed-source software, please contact us
+# at 'social@itametis.com' to get a commercial version of LINUX-TOOLS,
+# with a proprietary license instead.
+#
+
+display_command_usage() {
+    echo "Command usage : 'create_in_memory_disk <SIZE_IN_MB> <PATH_OF_MOUNT_POINT>'"
+    echo ""
+    echo "    - SIZE_IN_MB          : The size (in Mega-Byte) of the disk to create in memory"
+    echo "    - PATH_OF_MOUNT_POINT : The folder where to mount the virtual disk"
+}
+
+# Check command usage :
+if [ "$1" == "" ] || [ "$2" == "" ]; then
+    display_command_usage
+    exit 1
+fi
+
+# Create mount point directory if required :
+if [ ! -d "$2" ]; then
+    mkdir -p $2
+fi
+
+# Create the virtual disk inside the memory :
+memSize="$1"
+diskPath="$2"
+sudo mount -t tmpfs -o size=${memSize}m tmpfs $diskPath
