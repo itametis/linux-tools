@@ -20,6 +20,6 @@ with a proprietary license instead.
 ---
 
 # What is it ?
-This repository contains all the scripts, configuration or applications developed by ITAMETIS in order to improve the developer productivity.
+This repository contains all the scripts, configuration or applications developed by [ITAMETIS](http://itametis.com) in order to improve the developer productivity.
 
 Each subfolder contains all the tools for a dedicated application.
